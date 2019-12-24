@@ -12,12 +12,19 @@ const App = () => {
     dropoff: { address: "", latitude: "", longitude: "" }
   });
 
+  const [timeout, setTimeout2] = useState(0);
+
   const [toggleToast, setToggleToast] = useState(false);
 
   const handleChange = event => {
     const value = { address: event.target.value };
     const name = event.target.name;
-    callApiGeolocate(value, name);
+    if (timeout) clearTimeout(timeout);
+    setTimeout2(() =>
+      setTimeout(() => {
+        callApiGeolocate(value, name);
+      }, 500)
+    );
   };
 
   const callApiGeolocate = (value, key) => {
@@ -65,6 +72,7 @@ const App = () => {
       />
       <Toaster toggleToast={toggleToast} setToggleToast={setToggleToast} />
       <Map trip={trip} />
+      {console.log(trip)}
     </div>
   );
 };
