@@ -72,7 +72,6 @@ const App = () => {
       />
       <Toaster toggleToast={toggleToast} setToggleToast={setToggleToast} />
       <Map trip={trip} />
-      {console.log(trip)}
     </div>
   );
 };
